@@ -1,0 +1,406 @@
+/* ============================================================
+   Kindle Clippings Organizer — styles.css
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:             #fafaf8;
+  --surface:        #ffffff;
+  --border:         #e5e2db;
+  --text-primary:   #1a1a18;
+  --text-secondary: #6b6860;
+  --text-muted:     #9b9890;
+  --accent:         #c4773b;
+  --accent-light:   #f5ede4;
+  --note-bg:        #fffbf0;
+  --note-border:    #e8c84a;
+  --header-h:       56px;
+  --book-header-h:  64px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   Upload Screen
+   ============================================================ */
+
+#upload-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.upload-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 460px;
+  padding: 3rem 2rem;
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  text-align: center;
+}
+
+.upload-zone:hover,
+.upload-zone.drag-over {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.upload-zone svg {
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+.upload-zone p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.upload-zone p strong {
+  color: var(--text-primary);
+}
+
+#browse-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font-family: inherit;
+}
+
+#browse-btn:hover {
+  color: #a05e28;
+}
+
+.upload-hint {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  max-width: 360px;
+  text-align: center;
+}
+
+/* Drop overlay */
+#drop-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(196, 119, 59, 0.08);
+  border: 3px dashed var(--accent);
+  border-radius: 8px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+#drop-overlay.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drop-message {
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 1.5rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  pointer-events: none;
+}
+
+/* ============================================================
+   App Layout
+   ============================================================ */
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* ============================================================
+   Top Header Bar
+   ============================================================ */
+
+#app-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: var(--header-h);
+  padding: 0 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+
+#app-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+}
+
+/* Book dropdown */
+.book-selector-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 560px;
+}
+
+#book-select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 0.45rem 2.25rem 0.45rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.15s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#book-select:focus {
+  border-color: var(--accent);
+}
+
+.select-arrow {
+  position: absolute;
+  right: 0.65rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-secondary);
+}
+
+#load-new-btn {
+  flex-shrink: 0;
+  padding: 0.4rem 0.9rem;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+#load-new-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ============================================================
+   Book Info Bar
+   ============================================================ */
+
+#book-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+
+.book-header-info {
+  min-width: 0;
+}
+
+#content-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#content-author {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#content-count {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ============================================================
+   Highlights List
+   ============================================================ */
+
+#highlights-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem 1.5rem 3rem;
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Placeholder */
+#content-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 300px;
+  color: var(--text-muted);
+  text-align: center;
+  gap: 0.75rem;
+}
+
+#content-placeholder svg {
+  opacity: 0.25;
+}
+
+#content-placeholder p {
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   Highlight Cards
+   ============================================================ */
+
+.highlight-card {
+  border-left: 3px solid var(--accent);
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1.25rem;
+  background: var(--surface);
+  border-radius: 0 6px 6px 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.highlight-card.type-note {
+  border-left-color: var(--note-border);
+  background: var(--note-bg);
+}
+
+.highlight-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+  font-family: system-ui, sans-serif;
+  font-size: 0.775rem;
+  color: var(--text-muted);
+}
+
+.meta-location {
+  font-weight: 500;
+}
+
+.meta-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.note-badge {
+  background: var(--note-border);
+  color: #7a6010;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.highlight-text {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ============================================================
+   Utility
+   ============================================================ */
+
+[hidden] { display: none !important; }
+
+/* ============================================================
+   Responsive — Mobile
+   ============================================================ */
+
+@media (max-width: 600px) {
+  #app-header {
+    padding: 0 1rem;
+    gap: 0.5rem;
+  }
+
+  #app-title {
+    display: none;
+  }
+
+  #highlights-list {
+    padding: 1rem 1rem 3rem;
+  }
+
+  #book-header {
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* ============================================================
+   Print
+   ============================================================ */
+
+@media print {
+  #app-header { display: none; }
+  #app { display: block; }
+  #highlights-list { overflow: visible; padding: 0; }
+  .highlight-card { box-shadow: none; break-inside: avoid; }
+}
