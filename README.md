@@ -1,6 +1,6 @@
 # Kindle Annotation Organizer
 
-A lightweight, browser-based viewer for your Kindle highlights and notes. Drop in your `My Clippings.txt` file and browse everything you've highlighted — organized by book, with dates and locations — without installing anything or sending your data anywhere.
+A browser-based viewer for your Kindle highlights. Drop in your `My Clippings.txt` and browse your highlights organized by book — no install, no server, nothing uploaded.
 
 ---
 
@@ -9,7 +9,6 @@ A lightweight, browser-based viewer for your Kindle highlights and notes. Drop i
 - **No setup** — open `index.html` directly in your browser, no server needed
 - **Private** — your file is processed entirely in your browser, nothing is uploaded
 - **Book dropdown** — all books listed by highlight count, pick one to view its highlights
-- **Rich metadata** — each highlight shows its page, location, and the date you made it
 - **Notes support** — Kindle notes are displayed separately from highlights with a distinct style
 - **Multilingual** — handles both English and Russian Kindle metadata formats
 - **Responsive** — works on mobile too
@@ -47,7 +46,6 @@ After loading, the app shows:
 
 - A **dropdown at the top** listing all your books, sorted by number of highlights. Each entry shows the title, author, and count.
 - Select a book to see all its highlights in reading order.
-- Each highlight card shows the **page/location** and **date** it was made.
 - **Notes** you wrote on your Kindle appear with a yellow tint and a "Note" badge.
 
 ### 5. Load a different file
