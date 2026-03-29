@@ -2,8 +2,6 @@
 
 A lightweight, browser-based viewer for your Kindle highlights and notes. Drop in your `My Clippings.txt` file and browse everything you've highlighted — organized by book, with dates and locations — without installing anything or sending your data anywhere.
 
-![Screenshot showing the app with a book dropdown and highlight cards](screenshot.png)
-
 ---
 
 ## Features
